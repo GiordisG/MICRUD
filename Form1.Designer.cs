@@ -139,6 +139,7 @@ namespace MICRUD
             this.btn_eliminar.TabIndex = 10;
             this.btn_eliminar.Text = "Eliminar";
             this.btn_eliminar.UseVisualStyleBackColor = true;
+            this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
             // 
             // btn_actualizar
             // 

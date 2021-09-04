@@ -71,6 +71,7 @@ namespace MICRUD
                 return null;
             }
         }
+
         public bool actualizar(persona p)
         {
             try
@@ -98,6 +99,31 @@ namespace MICRUD
 
         }
 
+        public bool eliminar(string documento)
+        {
+            try
+            {
+                Conexion cn = new Conexion();
+                string query = "DELETE Persona WHERE id='" + documento + "'";
+                SqlCommand comando = new SqlCommand(query, cn.conectar());
+                int cantidad = comando.ExecuteNonQuery();// variable para verificar si alguna fila fue afectada
+                if (cantidad == 1)
+                {//Si una fila fue afectada pues que desconecte la conexion
+                    cn.desconectar();
+                    return true;
+                }
+                else
+                {
+                    cn.desconectar();
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return false;
+            }
+        }
         public static DataTable listar()
         {
             try

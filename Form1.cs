@@ -148,5 +148,38 @@ namespace MICRUD
                 }
             }
         }
+
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            if (txt_documento.Text == "")
+            {
+                MessageBox.Show("debe ingresar el documento a eliminar");
+            }
+            else if (DialogResult.Yes == MessageBox.Show(null, "Realmente desea eliminar el documento?", "Confirmacion", MessageBoxButtons.YesNo))
+            {
+                try
+                {
+                    personaAD per = new personaAD();
+                    if (per.eliminar(txt_documento.Text.Trim()))
+                    {//le pasamos por parametro el objeto de la clase persona con las informaciones integradas.
+
+                        llenarGrid();
+                        MessageBox.Show("Datos eliminados correctamente");
+                        limpiarCampos();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se eliminaron los datos");
+                        limpiarCampos();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }
